@@ -1,0 +1,36 @@
+# --- HTML Template (Embedded) ---
+html_template = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fun Cat Fact</title>
+</head>
+<body>
+    <h1>Fun Cat Fact</h1>
+    <p>{{ fact['fact'] }}</p>
+    <p>Source: {{ fact['source'] }}</p>
+    <button onclick="window.location.reload()">Get Another Fact</button>
+    <button onclick="copyToClipboard()">Copy Fact</button>
+
+    <script>
+        function copyToClipboard() {
+            navigator.clipboard.writeText("{{ fact['fact'] }} - Source: {{ fact['source'] }}")
+              .then(() => {
+                alert("Fact copied to clipboard!");
+              })
+              .catch(err => {
+                console.error('Failed to copy: ', err);
+              });
+        }
+    </script>
+</body>
+</html>
+"""
+
+@app.route('/template')
+def serve_template():
+    fact = get_random_fact()
+    return html_template.replace("{{ fact['fact'] }}", fact['fact']).replace("{{ fact['source'] }}", fact['source'])
+
+if __name__ == '__main__':
+    app.run(debug=True)
