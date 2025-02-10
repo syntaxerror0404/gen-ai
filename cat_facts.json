@@ -1,0 +1,11 @@
+[
+  {
+    "fact": "A cat's nose print is unique, much like a human fingerprint.",
+    "source": "Cat Fanciers' Association"
+  },
+  {
+    "fact": "Cats can make over 100 different vocalizations, while dogs can only make about 10.",
+    "source": "Animal Planet"
+  },
+  // ... more facts
+]
